@@ -1,0 +1,73 @@
+lsof or 'list of Open Files' is used to define which files are open by which process.
+Since linux/unix consider everything as a file (pipes, socket, directories, devices etc) we can use this command to identify which files are in current use.
+
+#### LIST ALL OPEN FILES WITH lsof COMMAND #####
+
+# lsof
+
+Sections and it’s values are self-explanatory. However, we’ll review FD & TYPE columns more precisely.
+
+FD – stands for File descriptor and may seen some of the values as:
+
+    cwd current working directory
+    rtd root directory
+    txt program text (code and data)
+    mem memory-mapped file
+
+Also in FD column numbers like 1u is actual file descriptor and followed by u,r,w of it’s mode as:
+
+    r for read access.
+    w for write access.
+    u for read and write access.
+
+TYPE – of files and it’s identification.
+
+    DIR – Directory
+    REG – Regular file
+    CHR – Character special file.
+    FIFO – First In First Out
+
+
+##### List User Specific Open Files #####
+
+##  lsof -u cyberpunk
+
+##### Find Processes running on Specific Port ####
+
+## lsof -i TCP:22
+
+##### List Only IPv4 & IPv6 Open Files ####
+
+## lsof -i 4 
+
+## lsof -i 6
+
+###### List Open Files of TCP Port ranges 1-1024 ######
+
+## lsof -i TCP:1-1024
+
+##### Exclude User with ‘^’ Character #####
+
+## lsof -i -u^root
+
+##### Find Out who’s Looking What Files and Commands? #####
+
+## lsof -i -u cyberpunk
+
+##### List all Network Connections #####
+
+## lsof -i 
+
+##### Search by PID ####
+
+## lsof -p 1
+
+##### Kill all Activity of Particular User ####
+
+## kill -9 `lsof -t -u cyberpunk`
+
+###### get by process name ######
+
+## lsof -c firefox
+
+
